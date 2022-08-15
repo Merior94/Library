@@ -1,30 +1,38 @@
 package com.kodilla.library.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name = "books")
+@Builder
+@Entity(name = "book")
 public class Book {
+
     @Id
+    @NotNull
     @GeneratedValue
+    @Column(name="id", unique=true)
     private long id;
 
-    @Column(name = "title")
-    private String title;
+    @ManyToOne
+    private Title title;
 
-    @Column(name = "author")
-    private String author;
+    @Column(name = "status")
+    private BookStatus status;
 
-    //@Column(name = "date")
-    //private String date;
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title=" + title +
+                ", status=" + status +
+                '}';
+    }
 }

@@ -9,23 +9,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends CrudRepository<Book, Long> {
+public interface TitleRepository extends CrudRepository<Title, Long> {
 
     @Override
-    List<Book> findAll();
+    List<Title> findAll();
 
     @Override
-    Book save(Book book);
+    Title save(Title title);
 
     @Override
     void deleteById(Long id);
 
     @Override
-    Optional<Book> findById(Long id);
+    Optional<Title> findById(Long id);
 
-    //Optional<List<Book>> findByAuthorContaining(String author);
+    Optional<Title> findByTitle(String title);
 
-    Optional<List<Book>> findByTitle(Title title);
-
-    //Optional<List<Book>> findByTitleContainingOrAuthorContaining(String title, String author);
+    Optional<List<Title>> findByTitleContaining(String title);
 }
